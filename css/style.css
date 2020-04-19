@@ -13,6 +13,21 @@ body {
     margin: 0 auto;
 }
 
+.game-btn {
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid #d5d5d5;
+    padding: 5px 10px;
+    margin-left: 10px;
+    color: grey;
+    text-transform: uppercase;
+}
+
+.sale {
+    background-color: #00905e;
+    color: #fff;
+}
+
 #main-nav {
     position: fixed;
     top: 0;
@@ -65,7 +80,7 @@ body {
     width: 25%;
     transform: translateX(220%);
     top: 75px;
-    /* display: none; */
+    display: none;
 }
 
 #main-nav .basket-dropdown .basket-sum {
@@ -125,7 +140,7 @@ body {
     cursor: pointer;
 }
 
-#main-nav .basket-dropdown .basket-item .game-remove {
+#main-nav .basket-dropdown .basket-item .game-delete {
     color: #fff;
     text-transform: capitalize;
     font-weight: normal;
@@ -133,7 +148,7 @@ body {
     transition: all .5s;
 }
 
-#main-nav .basket-dropdown .basket-item:hover .game-remove {
+#main-nav .basket-dropdown .basket-item:hover .game-delete {
     color: grey;
 }
 
@@ -196,8 +211,8 @@ body {
 }
 
 .game-wrapper .game-item figcaption .game-item-btns {
-    float: right;
-    margin-top: 10px;
+    /* float: right; */
+    /* margin-top: 10px; */
     position: absolute;
     bottom: 10px;
     right: 10px;
