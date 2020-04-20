@@ -81,6 +81,52 @@ const basket = () => {
                 currentBasketItem.outerHTML = "";
                 items[i].inCart = false;
 
+                console.log(items[i].price);
+
+                let itemStatus = document.querySelector(`#${items[i].id}`).nextElementSibling.querySelector(".game-item-btns");
+                itemStatus.innerHTML = `<span class="game-price-self game-btn game-price">$${items[i].price}</span>`
+                if(items[i].sale === true) {
+                    itemStatus.insertAdjacentHTML("afterbegin", `<span class="game-btn sale">-${50}%</span>`)
+                }
+
+                let elem = itemStatus.querySelector(".game-price");
+
+                elem.addEventListener("click", () => {
+                    const elemItem = elem.closest("figcaption").previousElementSibling;
+
+                    for(let i in items) {
+                        if(elemItem.id === items[i].id) {
+                            if(items[i].inCart === false) {
+                                const currentObj = new ShopItem(items[i]);
+                                currentObj.renderBasketItemTemplate(currentObj);
+
+                                items[i].inCart = true;
+
+                                deleteItem = document.querySelectorAll(".game-delete");
+                                deleteItem.forEach(element => element.addEventListener("click", deleteBasketItem));
+
+                                const shopGamePrice = document.createElement("span");
+                                shopGamePrice.classList.add("basket-game-price");
+                                shopGamePrice.innerHTML = items[i].price;
+                                convertToNumber.push(Number(shopGamePrice.innerHTML));
+
+                                elem.innerHTML = "In Cart";
+                                let sale = elem.previousSibling;
+                                (sale)? sale.style.display = "none" : false;
+
+                                document.querySelectorAll(".games-amount").forEach(element => {
+                                    let counter = Number(element.innerHTML) + 1;
+                                    element.innerHTML = counter;
+                                });
+
+                                if(convertToNumber.length >= 1) {
+                                    gamesPriceSum.innerHTML = `$${convertToNumber.reduce((a, b) => (a+b))}`;
+                                }
+                            }
+                        }
+                    }
+                });
+
                 gamesAmount.forEach(element => {
                     let counter = Number(element.innerHTML) - 1;
                     element.innerHTML = counter;
