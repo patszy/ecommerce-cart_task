@@ -59,8 +59,8 @@ const basket = () => {
     }
 
     clearBasket = () => {
-        basketItemsWrapper.style.display = "none";
-        gamesAmmount.forEach(element => element.innerHTML = 0)
+        basketItemsWrapper.innerHTML = "";
+        gamesAmount.forEach(element => element.innerHTML = 0)
         gamesPriceSum.innerHTML = "";
         convertToNumber = [];
 
@@ -78,7 +78,8 @@ const basket = () => {
 
         for (let i in items) {
             if (items[i].id === currentBasketItem.id.slice(7)) {
-                currentBasketItem.style.display = "none";
+                currentBasketItem.outerHTML = "";
+                items[i].inCart = false;
 
                 gamesAmount.forEach(element => {
                     let counter = Number(element.innerHTML) - 1;
@@ -88,8 +89,8 @@ const basket = () => {
                 let currentItemPrice = Number(e.toElement.closest(".basket-item").querySelector(".basket-game-price").innerHTML.slice(1));
                 let allItemPrice = Number(gamesPriceSum.innerHTML.slice(1));
 
-                if(currentItemPrice > allItemPrice) {
-                    gamesPriceSum.innerHTML = Number(0).tofixed(2);
+                if(currentItemPrice >= allItemPrice) {
+                    gamesPriceSum.innerHTML = "";
                 } else {
                     gamesPriceSum.innerHTML = `$${Number(allItemPrice - currentItemPrice).toFixed(2)}`;
                 }
