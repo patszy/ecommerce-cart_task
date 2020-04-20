@@ -12,7 +12,7 @@ const basketItemsWrapper = document.querySelector(".basket-items-wrapper");
 
 let gamesPriceSum = document.querySelector("#game-price-sum");
 let gamesAmount = document.querySelectorAll(".games-amount");
-let convertToNumber = [];
+let gamesPrice = 0;
 
 class ShopItem {
     constructor(obj) {
@@ -62,8 +62,7 @@ const basket = () => {
         basketItemsWrapper.innerHTML = "";
         gamesAmount.forEach(element => element.innerHTML = 0)
         gamesPriceSum.innerHTML = "";
-        convertToNumber = [];
-
+        gamesPrice = 0;
         gameWrapper.innerHTML = "";
 
         for(let i in items) {
@@ -81,7 +80,7 @@ const basket = () => {
                 currentBasketItem.outerHTML = "";
                 items[i].inCart = false;
 
-                console.log(items[i].price);
+                gamesPrice = Math.round(gamesPrice*100)/100 - Number(items[i].price);
 
                 let itemStatus = document.querySelector(`#${items[i].id}`).nextElementSibling.querySelector(".game-item-btns");
                 itemStatus.innerHTML = `<span class="game-price-self game-btn game-price">$${items[i].price}</span>`
@@ -108,7 +107,7 @@ const basket = () => {
                                 const shopGamePrice = document.createElement("span");
                                 shopGamePrice.classList.add("basket-game-price");
                                 shopGamePrice.innerHTML = items[i].price;
-                                convertToNumber.push(Number(shopGamePrice.innerHTML));
+                                gamesPrice += Number(items[i].price);
 
                                 elem.innerHTML = "In Cart";
                                 let sale = elem.previousSibling;
@@ -119,9 +118,7 @@ const basket = () => {
                                     element.innerHTML = counter;
                                 });
 
-                                if(convertToNumber.length >= 1) {
-                                    gamesPriceSum.innerHTML = `$${convertToNumber.reduce((a, b) => (a+b))}`;
-                                }
+                                gamesPriceSum.innerHTML = `$${gamesPrice}`;
                             }
                         }
                     }
@@ -189,9 +186,9 @@ const shop = () => {
             }
         }
 
-        const renderedItems = document.querySelectorAll(".game-price");
+        const renderedItemsPrice = document.querySelectorAll(".game-price");
 
-        renderedItems.forEach(elem => {
+        renderedItemsPrice.forEach(elem => {
             const elemItem = elem.closest("figcaption").previousElementSibling;
 
             for(let i in items) {
@@ -209,7 +206,7 @@ const shop = () => {
                             const shopGamePrice = document.createElement("span");
                             shopGamePrice.classList.add("basket-game-price");
                             shopGamePrice.innerHTML = items[i].price;
-                            convertToNumber.push(Number(shopGamePrice.innerHTML));
+                            gamesPrice += Number(items[i].price);
 
                             elem.innerHTML = "In Cart";
                             let sale = elem.previousSibling;
@@ -220,9 +217,7 @@ const shop = () => {
                                 element.innerHTML = counter;
                             });
 
-                            if(convertToNumber.length >= 1) {
-                                gamesPriceSum.innerHTML = `$${convertToNumber.reduce((a, b) => (a+b))}`;
-                            }
+                            gamesPriceSum.innerHTML = `$${gamesPrice}`;
                         }
                     });
                 }
