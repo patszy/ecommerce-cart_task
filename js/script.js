@@ -80,7 +80,7 @@ const basket = () => {
                 currentBasketItem.outerHTML = "";
                 items[i].inCart = false;
 
-                gamesPrice = Math.round(gamesPrice*100)/100 - Number(items[i].price);
+                gamesPrice = gamesPrice.toFixed(2) - Number(items[i].price);
 
                 let itemStatus = document.querySelector(`#${items[i].id}`).nextElementSibling.querySelector(".game-item-btns");
                 itemStatus.innerHTML = `<span class="game-price-self game-btn game-price">$${items[i].price}</span>`
