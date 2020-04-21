@@ -218,3 +218,32 @@ body {
     right: 10px;
     cursor: pointer;
 }
+
+/* RWD */
+
+@media all and (max-width: 992px) {
+    .custom-container {
+        width: 100%;
+    }
+
+    #main-nav .basket-dropdown {
+        transform: translateX(300%);
+    }
+}
+
+@media all and (max-width: 800px) {
+    .main-game-bg {
+        background-size: cover;
+        height: 200px;
+    }
+
+    #main-nav .basket-dropdown {
+        width: 100%;
+        transform: translateX(0);
+    }
+
+    .game-wrapper .game-item {
+        width: 99%;
+        margin: 10px;
+    }
+}
