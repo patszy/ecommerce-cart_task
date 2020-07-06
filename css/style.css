@@ -83,6 +83,10 @@ body {
     display: none;
 }
 
+#main-nav .basket-dropdown.--show {
+    display: block;
+}
+
 #main-nav .basket-dropdown .basket-sum {
     padding: 10px;
     overflow: hidden;
@@ -211,8 +215,6 @@ body {
 }
 
 .game-wrapper .game-item figcaption .game-item-btns {
-    /* float: right; */
-    /* margin-top: 10px; */
     position: absolute;
     bottom: 10px;
     right: 10px;

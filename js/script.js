@@ -50,13 +50,9 @@ class ShopItem {
 }
 
 const basket = () => {
-    showBasketPanel = () => {
-        document.querySelector(".basket-dropdown").style.display = "block";
-    }
+    showBasketPanel = () => document.querySelector(".basket-dropdown").classList.add(`--show`);
 
-    hideBasketPanel = () => {
-        document.querySelector(".basket-dropdown").style.display = "none";
-    }
+    hideBasketPanel = () => document.querySelector(".basket-dropdown").classList.remove(`--show`);
 
     clearBasket = () => {
         basketItemsWrapper.innerHTML = "";
@@ -143,8 +139,6 @@ const basket = () => {
 
     loadEventListeners = () => {
         document.querySelector(".toggle-panel").addEventListener("mouseover", showBasketPanel);
-        document.querySelector(".basket-dropdown").addEventListener("mouseover", showBasketPanel);
-        // document.querySelector(".toggle-panel").addEventListener("mouseleave", hideBasketPanel);
         document.querySelector(".basket-dropdown").addEventListener("mouseleave", hideBasketPanel);
         clearCard.addEventListener("click", clearBasket);
     };
